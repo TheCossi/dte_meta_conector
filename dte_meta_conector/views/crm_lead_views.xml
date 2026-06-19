@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_lead_view_form_inherit_meta" model="ir.ui.view">
+        <name>crm.lead.form.inherit.meta</name>
+        <model>crm.lead</model>
+        <inherit_id ref="crm.crm_lead_view_form"/>
+        <arch type="xml">
+            <xpath expr="//div[@class='oe_title']" position="after">
+                <div class="alert alert-info" role="alert" attrs="{'invisible': [('meta_campaign_name', '=', False)]}">
+                    Prospecto capturado desde Meta Ads Campaña: <strong><field name="meta_campaign_name" readonly="1"/></strong>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='lead_info']" position="inside">
+                <group string="Atención Omnicanal (Meta)">
+                    <field name="meta_conversation_state" widget="radio" options="{'horizontal': true}"/>
+                </group>
+            </xpath>
+        </arch>
+    </record>
+</odoo>

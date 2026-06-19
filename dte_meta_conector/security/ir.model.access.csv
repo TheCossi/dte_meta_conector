@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_meta_channel,meta.channel,model_meta_channel,base.group_user,1,1,1,1
+access_meta_log_error,meta.log.error,model_meta_log_error,base.group_user,1,1,1,1

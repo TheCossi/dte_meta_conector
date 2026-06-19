@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_meta_channel_form" model="ir.ui.view">
+        <name>meta.channel.form</name>
+        <model>meta.channel</model>
+        <arch type="xml">
+            <form string="Configuración de Canal Meta">
+                <header>
+                    <button name="action_test_connection" string="Probar Conexión" type="object" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,maintenance"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Clasificación">
+                            <field name="channel_type"/>
+                        </group>
+                        <group string="Conexión Middleware (FastAPI)">
+                            <field name="middleware_url"/>
+                            <field name="bearer_token" password="True"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Credenciales Meta Cloud API">
+                            <group>
+                                <field name="page_id"/>
+                                <field name="meta_access_token" password="True"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </arch>
+    </record>
+
+    <record id="view_meta_channel_tree" model="ir.ui.view">
+        <name>meta.channel.tree</name>
+        <model>meta.channel</model>
+        <arch type="xml">
+            <tree string="Canales Meta">
+                <field name="name"/>
+                <field name="channel_type"/>
+                <field name="middleware_url"/>
+                <field name="state"/>
+            </tree>
+        </arch>
+    </record>
+
+    <record id="action_meta_channel" model="ir.actions.act_window">
+        <name>Canales de Meta</name>
+        <res_model>meta.channel</res_model>
+        <view_mode>tree,form</view_mode>
+    </record>
+
+    <menuitem id="menu_meta_root" name="Meta Conector" parent="crm.menu_crm_config" sequence="90"/>
+    <menuitem id="menu_meta_channels" name="Configurar Canales" parent="menu_meta_root" action="action_meta_channel" sequence="10"/>
+</odoo>
